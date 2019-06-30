@@ -1,6 +1,8 @@
 package com.google.android.gms.samples.vision.face.facetracker.ui.main;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,9 @@ import android.support.v4.app.Fragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 
+import com.google.android.gms.samples.vision.face.facetracker.MasonryAdapter;
 import com.google.android.gms.samples.vision.face.facetracker.R;
+import com.google.android.gms.samples.vision.face.facetracker.SpacesItemDecoration;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -46,13 +50,24 @@ public class PlaceholderFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_offers, container, false);
-        final TextView textView = root.findViewById(R.id.section_label);
-        pageViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+//        final TextView textView = root.findViewById(R.id.section_label);
+//        pageViewModel.getText().observe(this, new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
+
+        RecyclerView mRecyclerView = root.findViewById(R.id.recyclerView);
+
+        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+
+        MasonryAdapter adapter = new MasonryAdapter(getContext());
+        mRecyclerView.setAdapter(adapter);
+
+        SpacesItemDecoration decoration = new SpacesItemDecoration(164);
+        mRecyclerView.addItemDecoration(decoration);
+
         return root;
     }
 }

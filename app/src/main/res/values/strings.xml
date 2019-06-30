@@ -8,6 +8,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_offers">Offers</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Skirts</string>
+    <string name="tab_text_2">Tops</string>
+    <string name="tab_text_3">Dress</string>
+    <string name="tab_text_4">T-Shirt</string>
+    <string name="tab_text_5">Shorts</string>
+    <string name="tab_text_6">Pants</string>
 </resources>
