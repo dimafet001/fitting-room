@@ -1,5 +1,6 @@
 package com.google.android.gms.samples.vision.face.facetracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -28,6 +29,10 @@ public class OffersActivity extends AppCompatActivity {
 
         tabs.getTabAt(2).select();
 
+    }
 
+    public void ChooseOffer(View v) {
+        Intent i = new Intent(this, OfferDescriptionActivity.class);
+        startActivity(i);
     }
 }

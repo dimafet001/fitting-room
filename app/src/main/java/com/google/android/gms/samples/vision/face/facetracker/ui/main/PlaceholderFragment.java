@@ -1,5 +1,6 @@
 package com.google.android.gms.samples.vision.face.facetracker.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -14,6 +15,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 
 import com.google.android.gms.samples.vision.face.facetracker.MasonryAdapter;
+import com.google.android.gms.samples.vision.face.facetracker.OfferDescriptionActivity;
 import com.google.android.gms.samples.vision.face.facetracker.R;
 import com.google.android.gms.samples.vision.face.facetracker.SpacesItemDecoration;
 

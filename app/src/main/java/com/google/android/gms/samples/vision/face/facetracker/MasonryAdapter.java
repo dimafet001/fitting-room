@@ -21,6 +21,7 @@ public class MasonryAdapter extends RecyclerView.Adapter<MasonryView> {
     public MasonryView onCreateViewHolder(ViewGroup parent, int viewType) {
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.content_card, parent, false);
         MasonryView masonryView = new MasonryView(layoutView);
+
         return masonryView;
     }
 
