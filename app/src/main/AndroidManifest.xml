@@ -13,7 +13,8 @@
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@drawable/icon"
-        android:label="FaceTracker"
+        android:roundIcon="@drawable/icon"
+        android:label="Fitting Room"
         android:theme="@style/Theme.AppCompat.Light">
 
         <activity android:name=".OfferDescriptionActivity"
