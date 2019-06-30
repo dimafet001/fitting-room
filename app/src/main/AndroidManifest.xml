@@ -9,55 +9,48 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
 
-
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@drawable/icon"
-        android:theme="@style/Theme.AppCompat.Light"
-        android:label="FaceTracker">
+        android:label="FaceTracker"
+        android:theme="@style/Theme.AppCompat.Light">
+        <activity
+            android:name=".OffersActivity"
+            android:label="@string/title_activity_offers"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
 
-        <meta-data android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
-
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="face" />
 
         <activity
-            android:name="com.google.android.gms.samples.vision.face.facetracker.FaceTrackerActivity"
+            android:name=".FaceTrackerActivity"
             android:icon="@drawable/icon"
             android:label="Face Tracker"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="fullSensor">
-
-        </activity>
-
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
-            android:name="com.google.android.gms.samples.vision.face.facetracker.HomepageActivity"
+            android:name=".HomepageActivity"
             android:icon="@drawable/icon"
             android:label="Face Tracker"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="fullSensor">
-
-        </activity>
-
-
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
-            android:name="com.google.android.gms.samples.vision.face.facetracker.LandingPageActivity"
+            android:name=".LandingPageActivity"
             android:icon="@drawable/icon"
             android:label="Face Tracker"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="fullSensor">
-
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
     </application>
 
 </manifest>

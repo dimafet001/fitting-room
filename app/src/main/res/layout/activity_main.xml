@@ -1,21 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff">
 
     <ImageView
-        android:id="@+id/bg"
+        android:id="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/group_02"
-        android:visibility="visible"/>
-    <View
-        android:id="@+id/view"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:adjustViewBounds="true"
+        android:src="@drawable/group_02_cut"/>
+
+    <HorizontalScrollView
+        android:layout_below="@id/top"
+        android:id="@+id/categ_scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/firstCateg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="35dp"
+                android:onClick="ChooseCateg">
+
+                <ImageView
+                    android:layout_width="@dimen/btn_categ"
+                    android:layout_height="@dimen/btn_categ"
+                    android:background="@drawable/shape"
+                    android:src="@drawable/clothes"
+                    android:backgroundTint="#EEE4DB"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Clothes"
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:paddingTop="5dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1500 items"
+                    android:textColor="#aaa"
+                    android:gravity="center"
+                    android:paddingTop="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp">
+
+                <ImageView
+                    android:layout_width="@dimen/btn_categ"
+                    android:layout_height="@dimen/btn_categ"
+                    android:src="@drawable/shoes"
+                    android:background="@drawable/shape"
+                    android:backgroundTint="#F0E2E2"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:text="Shoes"
+                    android:textColor="#000" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="742 items"
+                    android:textColor="#aaa"
+                    android:gravity="center"
+                    android:paddingTop="5dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp">
+
+                <ImageView
+                    android:layout_width="@dimen/btn_categ"
+                    android:layout_height="@dimen/btn_categ"
+                    android:src="@drawable/bag"
+                    android:background="@drawable/shape"
+                    android:backgroundTint="#E5F0E2"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bags"
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:paddingTop="5dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="53 items"
+                    android:textColor="#aaa"
+                    android:gravity="center"
+                    android:paddingTop="5dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="35dp">
+
+                <ImageView
+                    android:layout_width="@dimen/btn_categ"
+                    android:layout_height="@dimen/btn_categ"
+                    android:src="@drawable/necklace"
+                    android:background="@drawable/shape"
+                    android:backgroundTint="#E1E8F3"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Accessories"
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:paddingTop="5dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="35 items"
+                    android:textColor="#aaa"
+                    android:gravity="center"
+                    android:paddingTop="5dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ImageView
+        android:id="@+id/bot"
+        android:layout_below="@id/categ_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/group_02_cut_2"
+        android:paddingTop="25dp"/>
 
 </RelativeLayout>
