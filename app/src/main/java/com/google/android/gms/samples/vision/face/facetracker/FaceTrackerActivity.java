@@ -25,12 +25,22 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Camera;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Environment;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -42,8 +52,14 @@ import com.google.android.gms.vision.face.FaceDetector;
 import com.google.android.gms.samples.vision.face.facetracker.ui.camera.CameraSourcePreview;
 import com.google.android.gms.samples.vision.face.facetracker.ui.camera.GraphicOverlay;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Timer;
 
 /**
  * Activity for the face tracker app.  This app detects faces with the rear facing camera, and draws
@@ -84,6 +100,135 @@ public final class FaceTrackerActivity extends AppCompatActivity {
         } else {
             requestCameraPermission();
         }
+
+        ImageView colorPallete = findViewById(R.id.colorPallete);
+        colorPallete.setOnTouchListener(new View.OnTouchListener() {
+            float dY = 0;
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+
+                    case MotionEvent.ACTION_DOWN:
+
+                        dY = view.getY() - motionEvent.getRawY();
+                        break;
+
+                    case MotionEvent.ACTION_MOVE:
+
+
+
+                        if (view.getBottom() > mGraphicOverlay.getBottom())
+                            view.animate()
+                                .y(motionEvent.getRawY() + dY)
+                                .setDuration(0)
+                                .start();
+                        break;
+                    default:
+                        return false;
+                }
+                return true;
+            }
+        });
+    }
+
+    public void Record(View v) {
+        mPreview.getmCameraSource().takePicture(null, mPicture);
+
+        new CountDownTimer(1000, 500) {
+            @Override
+            public void onTick(long millisUntilFinished) {}
+
+            @Override
+            public void onFinish() {
+                // Inflating the layout for the toast
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.custom_toast,
+                        (ViewGroup) findViewById(R.id.toast_custom));
+
+// Typecasting and finding the view in the inflated layout
+//                TextView text = (TextView) layout.findViewById(R.id.tvtoast);
+
+// Creating the Toast
+                Toast toast = new Toast(getApplicationContext());
+
+// Setting the position of the Toast to centre
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+
+// Setting the duration of the Toast
+                toast.setDuration(Toast.LENGTH_SHORT);
+
+// Setting the Inflated Layout to the Toast
+                toast.setView(layout);
+
+// Showing the Toast
+                toast.show();
+            }
+        }.start();
+    }
+
+    public void AddWishlist(View v) {
+        // Inflating the layout for the toast
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.custom_toast,
+                (ViewGroup) findViewById(R.id.toast_custom));
+
+// Typecasting and finding the view in the inflated layout
+                TextView text = (TextView) layout.findViewById(R.id.tvtoast);
+                text.setText("Added to the Wishlist");
+
+// Creating the Toast
+        Toast toast = new Toast(getApplicationContext());
+
+// Setting the position of the Toast to centre
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+
+// Setting the duration of the Toast
+        toast.setDuration(Toast.LENGTH_SHORT);
+
+// Setting the Inflated Layout to the Toast
+        toast.setView(layout);
+
+// Showing the Toast
+        toast.show();
+    }
+
+    CameraSource.PictureCallback mPicture = new CameraSource.PictureCallback() {
+        @Override
+        public void onPictureTaken(byte[] bytes) {
+            File pictureFile = getOutputMediaFile();
+            if (pictureFile == null) {
+                return;
+            }
+            try {
+                FileOutputStream fos = new FileOutputStream(pictureFile);
+                fos.write(bytes);
+                fos.close();
+            } catch (FileNotFoundException e) {
+
+            } catch (IOException e) {
+            }
+        }
+    };
+
+    private static File getOutputMediaFile() {
+        File mediaStorageDir = new File(
+                Environment
+                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
+                "MyCameraApp");
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                Log.d("MyCameraApp", "failed to create directory");
+                return null;
+            }
+        }
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
+                .format(new Date());
+        File mediaFile;
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator
+                + "IMG_" + timeStamp + ".jpg");
+
+        return mediaFile;
     }
 
     /**

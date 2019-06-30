@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:src="@drawable/details_page_05"
+        android:onClick="CameraOn"
         />
 
 </android.support.constraint.ConstraintLayout>
